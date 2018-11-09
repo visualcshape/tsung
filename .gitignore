@@ -46,3 +46,6 @@ src/tsung_stats.pl
 tsung-recorder.sh
 tsung.sh
 tsung.spec
+
+.idea/*
+*.iml
