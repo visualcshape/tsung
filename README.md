@@ -26,5 +26,11 @@ Join the mailing-list:
 
 or use the tracker https://github.com/processone/tsung/issues
 
+## Customized Parts
 
+Jabber: send chat message to a single user. Set destination to `single_user` and set required attribute ( `single_username`, `single_domain` and `single_resource` ), You can use dynamic variable in those attributes 
+##### Usage
+```xml
+<jabber ack="no_ack" type="chat" size="20000" destination="single_user" single_username="%%_username%%" single_domain="my-alfred.com" single_resource="viewer_1"/>
+```
 
