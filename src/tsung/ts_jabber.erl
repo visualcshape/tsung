@@ -323,12 +323,16 @@ choose_domain(VHostFileId) ->
 %% Function: subst/2
 %% Purpose: Replace on the fly dynamic element
 %%----------------------------------------------------------------------
-subst(Req=#jabber{id=user_defined, username=Name,passwd=Pwd, data=Data, resource=Resource}, Dynvars) ->
+subst(Req=#jabber{id=user_defined, username=Name,passwd=Pwd, data=Data, resource=Resource, single_username = SingleUserName,
+  single_resource = SingleResource, single_domain = SingleDomain}, Dynvars) ->
     NewUser = ts_search:subst(Name,Dynvars),
     NewPwd  = ts_search:subst(Pwd,Dynvars),
     NewData = ts_search:subst(Data,Dynvars),
-    subst2(Req#jabber{username=NewUser,passwd=NewPwd,data=NewData,resource=ts_search:subst(Resource,Dynvars)}, Dynvars);
-
+    NewSingleUserName = ts_search:subst(SingleUserName, Dynvars),
+    NewSingleResource = ts_search:subst(SingleResource, Dynvars),
+    NewSingleDomain = ts_search:subst(SingleDomain, Dynvars),
+    subst2(Req#jabber{username=NewUser,passwd=NewPwd,data=NewData,resource=ts_search:subst(Resource,Dynvars),
+      single_domain = NewSingleDomain,single_resource = NewSingleResource, single_username = NewSingleUserName}, Dynvars);
 subst(Req=#jabber{data=Data,resource=Resource}, Dynvars) ->
     subst2(Req#jabber{data=ts_search:subst(Data,Dynvars),resource=ts_search:subst(Resource,Dynvars)},Dynvars).
 

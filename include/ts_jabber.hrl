@@ -63,7 +63,10 @@
                  keyfile,      %% user's private PEM encoded key file, used by type=starttls
                  keypass,      %% passphase of user's private PEM encoded key file, used by type=starttls
                  certfile,     %% the user's certificate file, userd by type=starttls
-                 prefix   %% username prefix
+                 prefix,   %% username prefix
+                 single_username,  %% single user only
+                 single_resource,  %% single user resource only
+                 single_domain     %% single user domain only
                 }).
 
 -define(setroster_intensity, 1/(ts_utils:get_val(setroster)*1000)).

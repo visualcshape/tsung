@@ -105,6 +105,9 @@ get_message(Jabber=#jabber{type = 'chat', id=Id, dest=online,username=User,passw
             ts_mon_cache:add({ count, error_no_online }),
             << >>
     end;
+get_message(Jabber=#jabber{type = 'chat', dest=single_user, single_username = SingleUsername,
+  single_resource = SingleResource, single_domain = SingleDomain})->
+  message(SingleUsername, Jabber, list_to_binary(string:join([SingleDomain, "/", SingleResource], "")));
 
 get_message(Jabber=#jabber{type = 'chat',domain=Domain,prefix=Prefix,dest=offline,user_server=UserServer})->
     case ts_user_server:get_offline(UserServer) of
