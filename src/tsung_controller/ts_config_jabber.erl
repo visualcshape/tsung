@@ -58,7 +58,6 @@ parse_config(Element = #xmlElement{name=jabber},
     Ack  = ts_config:getAttr(atom,Element#xmlElement.attributes, ack, no_ack),
     Dest= ts_config:getAttr(atom,Element#xmlElement.attributes, destination,random),
     Stamped = ts_config:getAttr(atom,Element#xmlElement.attributes, stamped, false),
-
     Size= ts_config:getAttr(integer,Element#xmlElement.attributes, size,0),
     Data= ts_config:getAttr(string,Element#xmlElement.attributes, data,undefined),
     Show= ts_config:getAttr(string,Element#xmlElement.attributes, show, "chat"),
@@ -74,6 +73,9 @@ parse_config(Element = #xmlElement{name=jabber},
     Nick = ts_config:getAttr(string,Element#xmlElement.attributes, nick, undefined),
     Group = ts_config:getAttr(string,Element#xmlElement.attributes, group, "Tsung Group"),
     RE = ts_config:getAttr(string,Element#xmlElement.attributes, regexp, undefined),
+    SingleUsername = ts_config:getAttr(string, Element#xmlElement.attributes, single_username, undefined),
+    SingleResource = ts_config:getAttr(string, Element#xmlElement.attributes, single_resource, undefined),
+    SingleDomain = ts_config:getAttr(string, Element#xmlElement.attributes, single_domain, undefined),
     Node = case ts_config:getAttr(string, Element#xmlElement.attributes, 'node', undefined) of
                     "" -> user_root;
                     X -> X
@@ -158,7 +160,10 @@ parse_config(Element = #xmlElement{name=jabber},
                                     keyfile = KeyFile,
                                     keypass = KeyPass,
                                     certfile = CertFile,
-                                    prefix = UserPrefix
+                                    prefix = UserPrefix,
+                                    single_domain = SingleDomain,
+                                    single_resource = SingleResource,
+                                    single_username = SingleUsername
                                    }
                    },
     ts_config:mark_prev_req(Id-1, Tab, CurS),

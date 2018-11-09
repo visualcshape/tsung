@@ -268,7 +268,11 @@ repeat | if | change_type | foreach | set_option | interaction | abort )*>
 <!ELEMENT jabber (xmpp_authenticate?) >
 <!ATTLIST jabber
     ack         (global | local | no_ack | parse | bidi_ack) #REQUIRED
-    destination (online | offline | random | unique | previous) "random"
+    destination (online | offline | random | unique | previous | single_user) "random"
+    single_username    CDATA #IMPLIED
+    single_domain      CDATA #IMPLIED
+    single_resource    CDATA #IMPLIED
+    jid         CDATA #IMPLIED
     id          NMTOKEN #IMPLIED
     size        NMTOKEN "0"
     data        CDATA   #IMPLIED
@@ -289,7 +293,7 @@ repeat | if | change_type | foreach | set_option | interaction | abort )*>
     keyfile     CDATA #IMPLIED
     keypass     CDATA #IMPLIED
     certfile    CDATA #IMPLIED
-    subid       CDATA #IMPLIED >
+    subid       CDATA #IMPLIED>
 
 <!ELEMENT xmpp_authenticate EMPTY >
 <!ATTLIST xmpp_authenticate
